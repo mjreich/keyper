@@ -1,0 +1,39 @@
+{
+  "name": "keyper",
+  "version": "0.0.0",
+  "description": "Keyper is a persistent key-value store backed by GitHub.",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "NODE_ENV=test mocha --compilers coffee:coffee-script -R spec test/*",
+    "start": "coffee index.coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mjreich/keyper.git"
+  },
+  "keywords": [
+    "key-value",
+    "key",
+    "store",
+    "github"
+  ],
+  "author": "mjreich",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "76b5a275933e0f5b66ed40212e3c4e0cd86b03c2",
+  "bugs": {
+    "url": "https://github.com/mjreich/keyper/issues"
+  },
+  "dependencies": {
+    "express": "~3.3.4",
+    "coffee-script": "~1.6.3",
+    "underscore": "~1.5.1",
+    "octonode": "~0.3.3"
+  },
+  "devDependencies": {
+    "mocha": "~1.12.0",
+    "should": "~1.2.2",
+    "superagent": "~0.15.4",
+    "supertest": "~0.7.1"
+  }
+}

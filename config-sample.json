@@ -1,0 +1,13 @@
+{
+  "github": {
+    "username": "",
+    "repo": "",
+    "apikey": "",
+  },
+  "persistance": {
+    "scheme": "hourly"
+  }
+  "port": 8080,
+  "apikey": null,
+  "domain": null,
+}
