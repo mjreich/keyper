@@ -5,6 +5,7 @@ should = require 'should'
 Persister = require "../lib/persister"
 
 file_data = "{'test': 'value'}"
+new_file_data = "{'test': 'newValue'}"
 
 describe "Persister", ->
   describe "constructor", ->
@@ -58,6 +59,15 @@ describe "Persister", ->
       @persister.getFile 'fake-collection.json', (err, body) ->
         should.exist err
         done()
+
+  describe "updateFile", ->
+    it "should update the file with the new contents", (done) ->
+      @persister.updateFile "collection.json", "test update", new_file_data, (err, res) =>
+        should.not.exist err
+        @persister.getFile 'collection.json', (err, body) ->
+          should.not.exist err
+          body.should.eql new_file_data
+          done()
 
   describe "fileExists", ->
     it "should return false if the file doesn't exist" ,(done) ->

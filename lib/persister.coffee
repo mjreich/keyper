@@ -10,9 +10,16 @@ class Persister
     @_owner = @_config.github.owner
     @_initClient()
 
-  saveData: (collectionName, data) ->
-    if not @_client
-      @_initClient()
+  updateFile: (filename, message, content, cb) ->
+    @getFile filename, (err, file, res) =>
+      return cb err if err and cb
+      data = {}
+      data.message = message
+      data.sha = res.sha
+      data.content = new Buffer(content).toString('base64')
+      @_client.put "/repos/#{@_owner}/#{@_repo}/contents/#{filename}", data, (err, status, body) => 
+        console.log status
+        cb err, body if cb
 
   getFile: (filename, cb) ->
     @_client.get "/repos/#{@_owner}/#{@_repo}/contents/#{filename}", (err, status, body) =>
@@ -32,6 +39,11 @@ class Persister
     data.content = new Buffer(content).toString('base64')
     @_client.put "/repos/#{@_owner}/#{@_repo}/contents/#{filename}", data, (err, status, body) =>
       cb err, body if cb
+
+  saveFile: (filename, message, content, cb) ->
+    @fileExists filename, (exists) =>
+      return @createFile(filename, message, content, cb) if not exists
+      @updateFile(filename, message, content, cb)
 
   deleteFile: (filename, message, cb) ->
     @getFile filename, (err, file, res) =>

@@ -37,7 +37,7 @@ describe "Keyper", ->
 
     it "should return null if the key doesn't exist", (done) ->
       should.not.exist @keyper.getValue('someKey')
-      done()
+      done()  
 
   describe "deleteValue", ->
     beforeEach (done) ->
@@ -146,3 +146,24 @@ describe "Keyper", ->
       @keyper.subtractValue "someKey", 4
       @keyper.getValue("someKey").should.eql "2"
       done()      
+
+  describe "push", ->
+    beforeEach (done) ->
+      @keyper = new Keyper
+      @keyper.setValue "key", []
+      done() 
+
+    it "should push the value into the array", (done) ->
+      @keyper.push "key", "somevalue"
+      @keyper.getValue("key")[0].should.eql "somevalue"
+      done()
+
+  describe "nested keys", ->
+    beforeEach (done) ->
+      @keyper = new Keyper
+      @keyper.setValue "key", {subKey: "value"}
+      done() 
+
+    it "should support nested key accessor", (done) ->
+      @keyper.getValue("key.subKey").should.eql "value"
+      done()

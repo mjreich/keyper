@@ -4,7 +4,7 @@
   "description": "Keyper is a persistent key-value store backed by GitHub.",
   "main": "index.coffee",
   "scripts": {
-    "test": "NODE_ENV=test mocha --compilers coffee:coffee-script -R spec test/*",
+    "test": "NODE_ENV=test mocha --compilers coffee:coffee-script -R spec test/* -t 5000",
     "start": "coffee index.coffee"
   },
   "repository": {
