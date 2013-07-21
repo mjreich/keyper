@@ -1,12 +1,12 @@
 express = require 'express'
 _ = require 'underscore'
 
-Keyper = require "./lib/keyper"
-
-port = parseInt(process.env.PORT) || 8080
-
 fs = require 'fs'
 config = JSON.parse fs.readFileSync("./config.json").toString()
+
+Keyper = require "./lib/keyper"
+
+port = parseInt(config.port) || 8080
 
 app = express()
 

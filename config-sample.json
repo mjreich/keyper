@@ -1,11 +1,11 @@
 {
   "github": {
-    "username": "",
+    "owner": "",
     "repo": "",
     "apikey": ""
   },
   "persistance": "hourly",
   "port": 8080,
   "apikey": null,
-  "domain": null,
+  "domain": null
 }
